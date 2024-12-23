@@ -1,0 +1,110 @@
+---
+title: "Introduction to metalite.sl"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to metalite.sl}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+resource_files:
+   - fig/*.png
+   - pdf/*.pdf
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  out.width = "100%",
+  dpi = 150,
+  eval = TRUE
+)
+```
+
+```{r}
+library(metalite)
+library(metalite.sl)
+```
+
+# Overview
+
+metalite.sl R package designed for the analysis & reporting of subject-level analysis in clinical trials.
+It operates on ADaM datasets and adheres to the metalite structure.
+The package encompasses the following components:
+
+<details>
+<summary>Baseline Characteristics.</summary>
+<img src="https://merck.github.io/metalite.sl/articles/fig/base0char.png" width="100%">
+</details>
+
+This R package offers a comprehensive software development lifecycle (SDLC)
+solution, encompassing activities such as definition, development,
+validation, and finalization of the analysis.
+
+# Highlighted features
+
+- Avoid duplicated input by using metadata structure.
+  - For example, define analysis population once to use
+    in all subject level analysis.
+- Consistent input and output in standard functions.
+- Provide workflow to add interactive features to subject-level analysis table.
+
+# Workflow
+
+The overall workflow includes the following steps:
+
+1. Define metadata information using metalite R package.
+1. Prepare outdata using `prepare_*()` functions.
+1. Extend outdata using `extend_*()` functions (optional).
+1. Format outdata using `format_*()` functions.
+1. Create TLFs using `tlf_*()` functions.
+
+For instance, we can illustrate the creation of a straightforward
+Baseline characteristic table as shown below.
+
+```{r, eval = FALSE}
+meta_sl_example() |>
+  prepare_base_char(
+    population = "apat",
+    analysis = "base_char",
+    parameter = "age;gender"
+  ) |>
+  format_base_char() |>
+  rtf_base_char(
+    source = "Source: [CDISCpilot: adam-adsl]",
+    path_outdata = tempfile(fileext = ".Rdata"),
+    path_outtable = tempfile(fileext = ".rtf")
+  )
+```
+
+```{r, out.width = "100%", out.height = "400px", echo = FALSE, fig.align = "center"}
+knitr::include_graphics("pdf/base0char.pdf")
+```
+
+An example for interactive baseline characteristic table:
+
+```{r}
+react_base_char(
+  metadata_sl = meta_sl_example(),
+  metadata_ae = metalite.ae::meta_ae_example(),
+  population = "apat",
+  observation = "wk12",
+  display_total = TRUE,
+  sl_parameter = "age;race",
+  ae_subgroup = c("age", "race"),
+  ae_specific = "rel",
+  width = 1200
+)
+```
+
+Additional examples and tutorials can be found on the
+[package website](https://merck.github.io/metalite.sl/articles/),
+offering further guidance and illustrations.
+
+## Input
+
+To implement the workflow in metalite.sl, it is necessary to establish
+a metadata structure using the metalite R package.
+For detailed instructions, please consult the
+[metalite tutorial](https://merck.github.io/metalite/articles/metalite.html)
+and refer to the source code of the function
+[`meta_sl_example()`](https://github.com/Merck/metalite.sl/blob/main/R/meta_sl_example.R).
