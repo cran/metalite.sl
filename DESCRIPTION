@@ -1,6 +1,6 @@
 Package: metalite.sl
 Title: Subject-Level Analysis Using 'metalite'
-Version: 0.1.0
+Version: 0.1.1
 Authors@R: c(
     person("Benjamin", "Wang", email = "benjamin.wang@merck.com", role = c("aut", "cre")),
     person("Yujie", "Zhao", role = "aut"),
@@ -20,15 +20,15 @@ Description: Analyzes subject-level data in clinical trials using the 'metalite'
     by Zhang et al. (2022) <https://r4csr.org/>.
 Depends: R (>= 4.1.0)
 License: GPL (>= 3)
-Imports: glue, metalite, metalite.ae, forestly, r2rtf, reactable,
-        stringr, rlang, plotly, htmltools, brew, uuid
+Imports: glue, metalite, metalite.ae, r2rtf, reactable, stringr, rlang,
+        plotly, htmltools, brew, uuid
 Suggests: dplyr, knitr, testthat (>= 3.0.0), tidyr
 VignetteBuilder: knitr
 Encoding: UTF-8
 RoxygenNote: 7.3.2
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2024-12-20 05:05:16 UTC; fukuhiro
+Packaged: 2025-05-08 23:34:17 UTC; fukuhiro
 Author: Benjamin Wang [aut, cre],
   Yujie Zhao [aut],
   Hiroaki Fukuda [aut],
@@ -40,4 +40,4 @@ Author: Benjamin Wang [aut, cre],
   Merck Sharp & Dohme Corp [cph]
 Maintainer: Benjamin Wang <benjamin.wang@merck.com>
 Repository: CRAN
-Date/Publication: 2024-12-23 10:50:01 UTC
+Date/Publication: 2025-05-09 02:50:02 UTC
